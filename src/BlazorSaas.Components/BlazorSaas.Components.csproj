@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <PackageId>BlazorSaas.Api</PackageId>
+        <PackageId>BlazorSaas.Components</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
