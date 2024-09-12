@@ -1,8 +1,12 @@
-name: Pack and deploy library
+name: Pack and push library
 
 on:
   push:
     branches: [ "main" ]
+
+env:
+  NUGET_URL: git.codvoc.com
+  NUGET_REPO: blazorsaas
 
 jobs:
   pack:
@@ -31,4 +35,4 @@ jobs:
         run: dotnet pack -o:package
 
       - name: Push generated packages
-        run: dotnet nuget push ./package/*.nupkg  --source https://gitea.codvoc.com/api/packages/blazorsaas/nuget/index.json --api-key ${{ secrets.PACKAGE_API_KEY }}
+        run: dotnet nuget push ./package/*.nupkg  --source https://${{ env.NUGET_URL }}/api/packages/${{ env.NUGET_REPO }}/nuget/index.json --api-key ${{ secrets.PACKAGE_API_KEY }}
