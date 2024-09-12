@@ -1,0 +1,25 @@
+<div class="card mb-4 rounded-3 shadow-sm @(IsFeatured ? "border-primary" : "")">
+    <div class="card-header text-center py-3 @(IsFeatured ? "text-bg-primary border-primary" : "")">
+        <h4 class="my-0 fw-normal">@Title</h4>
+    </div>
+    <div class="card-body">
+        <h2 class="h1 card-title text-center">
+            @Price
+        </h2>
+        <ul class="list-unstyled mt-3 mb-4">
+            @FeatureList
+        </ul>
+        @CallToAction
+    </div>
+</div>
+
+@code {
+
+    [Parameter] [EditorRequired] public string Title { get; set; } = null!;
+    [Parameter] public bool IsFeatured { get; set; }
+
+    [Parameter] [EditorRequired] public RenderFragment? Price { get; set; }
+    [Parameter] [EditorRequired] public RenderFragment? FeatureList { get; set; }
+    [Parameter] [EditorRequired] public RenderFragment? CallToAction { get; set; }
+
+}

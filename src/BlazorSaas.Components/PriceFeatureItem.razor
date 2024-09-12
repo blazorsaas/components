@@ -1,0 +1,22 @@
+<li class="d-flex align-items-center py-2">
+    @if (IsIncluded)
+    {
+        <span class="material-symbols-outlined me-2 text-primary">
+            check
+        </span>
+        @Feature
+    }
+    else
+    {
+        <span class="material-symbols-outlined me-2 text-muted">
+            close
+        </span>
+        <s class="text-muted">@Feature</s>
+    }
+</li>
+
+@code {
+
+    [Parameter] [EditorRequired] public string Feature { get; set; } = null!;
+    [Parameter] public bool IsIncluded { get; set; } = true;
+}

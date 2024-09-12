@@ -1,0 +1,24 @@
+<p class="h4 w-75 text-center mb-3">
+    @ChildContent
+</p>
+
+<div class="w-50 d-flex justify-content-center align-items-center gap-2">
+    <img width="70px" alt="@Name" src="@ImageUrl"/>
+    <div>
+        <p class="h6">@Name</p>
+        @if (ExtraInformation is not null)
+        {
+            <p class="text-body-secondary">@ExtraInformation</p>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] [EditorRequired] public string ImageUrl { get; set; } = null!;
+    [Parameter] [EditorRequired] public string Name { get; set; } = null!;
+
+    [Parameter] public string? ExtraInformation { get; set; }
+}

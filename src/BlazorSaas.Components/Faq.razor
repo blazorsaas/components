@@ -1,0 +1,7 @@
+<div class="accordion accordion-flush w-75 mx-auto mb-5">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

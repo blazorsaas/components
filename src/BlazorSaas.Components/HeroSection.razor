@@ -1,0 +1,38 @@
+@if (IsVertical)
+{
+    <div class="px-4 pt-5 text-center">
+        <h1 class="display-4 fw-bold text-body-emphasis">@Title</h1>
+        <div class="col-lg-6 mx-auto mb-3">
+            <p class="lead mb-4">@Description</p>
+            @ChildContent
+        </div>
+        <div class="container px-5">
+            <img src="@Assets[Image]" class="img-fluid border rounded-3 mb-4" alt="Example image" width="700" height="500" loading="lazy">
+        </div>
+    </div>
+}
+else
+{
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="@Assets[Image]" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">@Title</h1>
+            <p class="lead">@Description</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+}
+
+@code{
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] [EditorRequired] public string Title { get; set; } = null!;
+    [Parameter] [EditorRequired] public string Description { get; set; } = null!;
+    [Parameter] [EditorRequired] public string Image { get; set; } = null!;
+
+    [Parameter] public bool IsVertical { get; set; }
+}

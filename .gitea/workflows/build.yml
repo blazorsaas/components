@@ -1,0 +1,34 @@
+name: Pack and deploy library
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  pack:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.100-preview.7.24407.12
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build
+
+      - name: Pack
+        run: dotnet pack -o:package
+
+      - name: Push generated packages
+        run: dotnet nuget push ./package/*.nupkg  --source https://gitea.codvoc.com/api/packages/blazorsaas/nuget/index.json --api-key ${{ secrets.PACKAGE_API_KEY }}

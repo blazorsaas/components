@@ -1,0 +1,19 @@
+<div class="accordion-item border-0">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-transparent text-body fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faqitem-@GetHashCode()" aria-expanded="false" aria-controls="faqitem-@GetHashCode()">
+            @Title
+        </button>
+    </h2>
+    <div id="faqitem-@GetHashCode()" class="accordion-collapse collapse">
+        <div class="accordion-body text-body-secondary">
+            @ChildContent
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] [EditorRequired] public string Title { get; set; } = null!;
+}

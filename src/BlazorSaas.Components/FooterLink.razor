@@ -1,0 +1,11 @@
+<NavLink Match="NavLinkMatch.Prefix" class="nav-link text-body p-0" href="@Href">
+    @ChildContent
+</NavLink>
+
+@code{
+
+    [Parameter] [EditorRequired] public required string Href { get; set; }
+
+    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
+
+}
