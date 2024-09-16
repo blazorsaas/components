@@ -6,10 +6,12 @@ on:
 
 env:
   NUGET_URL: https://git.codvoc.com/api/packages/blazorsaas/nuget/index.json
+  SOURCE_PATH: 'latest.zip'
+  DESTINATION_PATH: 'components/latest.zip'
+  R2_BUCKET: 'blazorsaas'
 
 jobs:
-  pack:
-
+  build-and-pack:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,3 +37,24 @@ jobs:
 
       - name: Push generated packages
         run: dotnet nuget push ./package/*.nupkg  --source ${{ env.NUGET_URL }} --api-key ${{ secrets.PACKAGE_API_KEY }}
+
+  upload-tag:
+    needs: build-and-pack
+    runs-on: ubuntu-latest
+    if: github.event.ref == 'refs/tags/*'
+
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Create archive
+        run: |
+          git archive -o ${{ env.SOURCE_PATH }} HEAD
+
+      - name: Upload archive to R2
+        run: |
+          # Upload file to R2
+          curl -X PUT \
+            https://api.r2.cloudflare.com/v1/buckets/${{ env.R2_BUCKET }}/objects/${{ env.DESTINATION_PATH }} \
+            -H 'Authorization: Bearer ${{ secrets.CLOUDFLARE_R2_API_KEY }}' \
+            -H 'Content-Type: application/octet-stream' \
+            --data-binary @${{ env.SOURCE_PATH }}
