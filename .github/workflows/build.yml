@@ -38,6 +38,12 @@ jobs:
       - name: Push generated packages
         run: dotnet nuget push ./package/*.nupkg  --source ${{ env.NUGET_URL }} --api-key ${{ secrets.PACKAGE_API_KEY }}
 
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🍏 This job's status is ${{ job.status }}."  
+  
   upload-tag-archive:
     needs: build-and-pack
     runs-on: ubuntu-latest
