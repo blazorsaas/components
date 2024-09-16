@@ -43,10 +43,7 @@ jobs:
           git archive -o ${{ env.SOURCE_PATH }} HEAD
 
       - name: Upload archive to R2
-        run: |
-          # Upload file to R2
-          curl -X PUT \
-            https://api.r2.cloudflare.com/v1/buckets/${{ env.R2_BUCKET }}/objects/${{ env.DESTINATION_PATH }} \
-            -H 'Authorization: Bearer ${{ secrets.CLOUDFLARE_R2_API_KEY }}' \
-            -H 'Content-Type: application/octet-stream' \
-            --data-binary @${{ env.SOURCE_PATH }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_R2_API_KEY }}
+          command: r2 object put ${{ env.R2_BUCKET }}/${{ env.DESTINATION_PATH }} --file=${{ env.SOURCE_PATH }}
