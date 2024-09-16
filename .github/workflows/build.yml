@@ -38,11 +38,11 @@ jobs:
       - name: Push generated packages
         run: dotnet nuget push ./package/*.nupkg  --source ${{ env.NUGET_URL }} --api-key ${{ secrets.PACKAGE_API_KEY }}
 
-  upload-tag:
+  upload-tag-archive:
     needs: build-and-pack
     runs-on: ubuntu-latest
-    if: github.event.ref == 'refs/tags/*'
-
+    if: startsWith(github.ref, 'refs/tags/')
+    
     steps:
       - uses: actions/checkout@v4
         
