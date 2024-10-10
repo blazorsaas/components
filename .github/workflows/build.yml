@@ -6,8 +6,8 @@ on:
 
 env:
   NUGET_URL: https://git.codvoc.com/api/packages/blazorsaas/nuget/index.json
-  SOURCE_PATH: 'latest.zip'
-  DESTINATION_PATH: 'components/latest.zip'
+  SOURCE_PATH: 'components.zip'
+  DESTINATION_PATH: 'latest/components.zip'
   R2_BUCKET: 'blazorsaas'
 
 jobs:
