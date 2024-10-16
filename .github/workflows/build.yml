@@ -30,4 +30,4 @@ jobs:
         run: dotnet pack -o:package
 
       - name: Push generated packages
-        run: dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
