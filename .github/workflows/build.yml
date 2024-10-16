@@ -4,12 +4,6 @@ on:
   push:
     branches: [ "main" ]
 
-env:
-  NUGET_URL: https://git.codvoc.com/api/packages/blazorsaas/nuget/index.json
-  SOURCE_PATH: 'components.zip'
-  DESTINATION_PATH: 'latest/components.zip'
-  R2_BUCKET: 'blazorsaas'
-
 jobs:
   build-pack-and-archive:
     runs-on: ubuntu-latest
@@ -36,15 +30,4 @@ jobs:
         run: dotnet pack -o:package
 
       - name: Push generated packages
-        run: dotnet nuget push ./package/*.nupkg  --source ${{ env.NUGET_URL }} --api-key ${{ secrets.PACKAGE_API_KEY }}
-
-      - name: Create archive
-        run: |
-          git archive -o ${{ env.SOURCE_PATH }} HEAD
-
-      - name: Upload archive to R2
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_KEY }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: r2 object put ${{ env.R2_BUCKET }}/${{ env.DESTINATION_PATH }} --file=${{ env.SOURCE_PATH }}
+        run: dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }}
