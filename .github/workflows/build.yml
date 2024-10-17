@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-pack-and-archive:
+  build-and-pack:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
           
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.100-rc.1.24452.12
+          dotnet-version: 9.0.100-rc.2.24474.11
 
       - name: Restore dependencies
         run: dotnet restore
