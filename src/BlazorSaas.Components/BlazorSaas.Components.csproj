@@ -9,11 +9,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0-rc.2.24474.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.1" />
+        <PackageReference Include="Blazor.Bootstrap" Version="3.2.0"/>
+        <PackageReference Include="StrawberryShake.Core" Version="14.3.0"/>
+        <PackageReference Include="FluentValidation" Version="11.11.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\" />
+        <Folder Include="wwwroot\"/>
     </ItemGroup>
 
 </Project>

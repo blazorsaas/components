@@ -1,0 +1,20 @@
+@using StrawberryShake
+@foreach (var error in Errors)
+{
+    <Alert Color="AlertColor.Danger">
+        <h4 class="alert-heading">An error has occurred!</h4>
+        <p>@error.Message</p>
+        @if (error.Extensions != null && error.Extensions.Any())
+        {
+            <hr/>
+            foreach (var extension in error.Extensions)
+            {
+                <p>@extension.Key: @extension.Value</p>
+            }
+        }
+    </Alert>
+}
+
+@code {
+    [Parameter] [EditorRequired] public IEnumerable<IClientError> Errors { get; set; } = null!;
+}
