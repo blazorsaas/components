@@ -1,19 +1,19 @@
 @using StrawberryShake
 <Alert Color="AlertColor.Danger">
-<h4 class="alert-heading">An error has occurred!</h4>
-@foreach (var error in Errors)
-{
+    <h4 class="alert-heading">An error has occurred!</h4>
+    @foreach (var error in Errors)
+    {
         <p>@error.Message</p>
         if (error.Extensions != null && error.Extensions.Any())
         {
             <ul>
-            @foreach (var extension in error.Extensions)
-            {
-                <li>@extension.Key: @extension.Value</li>
-            }
+                @foreach (var extension in error.Extensions)
+                {
+                    <li>@extension.Key: @extension.Value</li>
+                }
             </ul>
         }
-}
+    }
 </Alert>
 
 @code {
