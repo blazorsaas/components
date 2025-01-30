@@ -7,9 +7,12 @@
                 <p class="fs-6 fw-bold text-body-secondary text-uppercase">@SubTitle</p>
             }
             <h2 class="display-5 fw-bold text-body-emphasis">@Title</h2>
-            <div class="col-lg-6 mx-auto w-75">
-                <p class="lead mb-4">@Description</p>
-            </div>
+            @if (Description is not null)
+            {
+                <div class="col-lg-6 mx-auto w-75">
+                    <p class="lead mb-4">@Description</p>
+                </div>
+            }
         </div>
         @ChildContent
     </div>
@@ -23,7 +26,10 @@ else
                 <p class="fs-6 fw-bold text-body-secondary text-uppercase">@SubTitle</p>
             }
             <h2 class="fw-bold text-body-emphasis">@Title</h2>
-            <p class="text-body-secondary">@Description</p>
+            @if (Description is not null)
+            {
+                <p class="text-body-secondary">@Description</p>
+            }
         </div>
         @ChildContent
     </div>
@@ -33,7 +39,7 @@ else
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
     [Parameter] [EditorRequired] public string Title { get; set; } = null!;
-    [Parameter] [EditorRequired] public string Description { get; set; } = null!;
+    [Parameter] public string? Description { get; set; }
 
     [Parameter] public string? SubTitle { get; set; }
 
