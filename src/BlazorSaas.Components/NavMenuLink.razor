@@ -1,11 +1,19 @@
-<NavLink Match="NavLinkMatch.Prefix" class="nav-link text-body d-inline-flex align-items-center ps-2 gap-2" href="@Href">
-    @ChildContent
+<NavLink Match="NavLinkMatch.Prefix"
+         class="nav-link text-body d-inline-flex align-items-center ps-2 gap-2"
+         href="@Href">
+    @if (Icon.HasValue)
+    {
+        <Icon Name="@Icon.Value" Size="IconSize.x5"/>
+    }
+    @Text
 </NavLink>
 
 @code{
 
     [Parameter] [EditorRequired] public required string Href { get; set; }
 
-    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
+    [Parameter] [EditorRequired] public required string Text { get; set; }
+
+    [Parameter] public IconName? Icon { get; set; }
 
 }
