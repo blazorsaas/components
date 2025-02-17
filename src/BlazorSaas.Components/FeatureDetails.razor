@@ -6,7 +6,12 @@
     <div class="card-body">
         @if (Icon.HasValue)
         {
-            <Icon Name="@Icon.Value" Size="IconSize.x4"/>
+            <div
+                class="d-inline-flex align-items-center justify-content-center @(IconBackgroundColor) bg-gradient rounded-3 mb-3"
+                style="width: 3rem; height: 3rem;">
+
+                <Icon Name="@Icon.Value" Size="IconSize.x4"/>
+            </div>
         }
         <h3 class="card-title fs-3 mb-3">@Title</h3>
         <p class="card-subtitle mb-3 text-body-secondary">@Description</p>
