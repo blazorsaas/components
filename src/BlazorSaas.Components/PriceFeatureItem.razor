@@ -1,16 +1,12 @@
 <li class="d-flex align-items-center py-2">
     @if (IsIncluded)
     {
-        <span class="material-symbols-outlined me-2 text-primary">
-            check
-        </span>
+        <Icon Name="IconName.Check" Color="IconColor.Primary" />
         @Feature
     }
     else
     {
-        <span class="material-symbols-outlined me-2 text-muted">
-            close
-        </span>
+        <Icon Name="IconName.X" Color="IconColor.Muted" />
         <s class="text-muted">@Feature</s>
     }
 </li>
