@@ -1,24 +1,41 @@
-@if (IsVertical)
+@if (Media is not null)
 {
-    <div class="pt-5 text-center">
-        <h1 class="display-4 fw-bold text-body-emphasis">@Title</h1>
-        <div class="col-lg-6 mx-auto mb-3">
-            <p class="lead mb-4">@Description</p>
-            @CallToAction
+    @if (IsVertical)
+    {
+        <div class="pt-5 text-center">
+            <div class="col-lg-8 mx-auto mb-3">
+                <h1 class="display-4 fw-bold text-body-emphasis">@Title</h1>
+                <div>
+                    <p class="lead mb-4">@Description</p>
+                    @CallToAction
+                </div>
+            </div>
+            @Media
         </div>
-        @Media
-    </div>
+    }
+    else
+    {
+        <div class="row d-flex flex-lg-row-reverse align-items-center pt-5 g-5">
+            <div class="col-lg-8">
+                @Media
+            </div>
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">@Title</h1>
+                <p class="lead">@Description</p>
+                @CallToAction
+            </div>
+        </div>
+    }
 }
 else
 {
-    <div class="row d-flex flex-lg-row-reverse align-items-center pt-5 g-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-            @Media
-        </div>
-        <div class="col-lg-6">
-            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">@Title</h1>
-            <p class="lead">@Description</p>
-            @CallToAction
+    <div class="pt-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 fw-bold text-body-emphasis">@Title</h1>
+            <div>
+                <p class="lead mb-4">@Description</p>
+                @CallToAction
+            </div>
         </div>
     </div>
 }
